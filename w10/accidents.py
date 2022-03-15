@@ -2,7 +2,6 @@
 # to read from the accidents.csv file.
 import csv
 
-
 # Column numbers from the accidents.csv file.
 YEAR_COLUMN = 0
 FATALITIES_COLUMN = 1
@@ -17,19 +16,24 @@ FATIGUE_COLUMN = 9
 
 
 def main():
-    # Prompt the user for a filename and open that text file.
-    filename = input("Name of file that contains NHTSA data: ")
-    with open(filename, "rt") as text_file:
+    # Prompt the user for a filename and open that text file
+    try:
+        filename = input("Name of file that contains NHTSA data: ")
+        with open(filename, "rt") as text_file:
 
-        # Prompt the user for a percentage.
-        perc_reduc = float(input(
-            "Percent reduction of texting while driving [0, 100]: "))
+            # Prompt the user for a percentage.
+            perc_reduc = float(
+                input("Percent reduction of texting while driving [0, 100]: "))
+            if (perc_reduc < 0) or (perc_reduc > 100):
+                print(
+                    'Please input a percentage between 0 and 100. Try again. ')
+                return
 
-        print()
         print(f"With a {perc_reduc}% reduction in using a cell",
-            "phone while driving, approximately this",
-            "number of injuries and deaths would have",
-            "been prevented in the USA.", sep="\n")
+              "phone while driving, approximately this",
+              "number of injuries and deaths would have",
+              "been prevented in the USA.",
+              sep="\n")
         print()
         print("Year, Injuries, Deaths")
 
@@ -47,12 +51,27 @@ def main():
             year = row[YEAR_COLUMN]
 
             # Call the estimate_reduction function.
-            injur, fatal = estimate_reduction(
-                    row, PHONE_COLUMN, perc_reduc)
+            injur, fatal = estimate_reduction(row, PHONE_COLUMN, perc_reduc)
 
             # Print the estimated reductions
             # in injuries and fatalities.
             print(year, injur, fatal, sep=", ")
+    except ValueError as val_err:
+        print(f' Error : {val_err}')
+        print(f'Could not convert string to float: {perc_reduc}. Try again. ')
+
+    except FileNotFoundError as file_not_found_err:
+
+        print(f'Error : {file_not_found_err}')
+        print(f'Could not find given file: {filename}. Try again. ')
+
+    except PermissionError as permission_error:
+        print(f'Error : {permission_error}')
+        print(f' Restricted Access to {filename}. Try again.')
+
+    except ZeroDivisionError as divide_by_zero:
+        print(f'Error : {divide_by_zero}')
+        print('File contains 0. Cannot compute. ')
 
 
 def estimate_reduction(row, behavior_key, perc_reduc):
