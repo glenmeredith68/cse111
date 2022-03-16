@@ -3,6 +3,7 @@
 from add_area_code import add_area_code
 import pytest
 
+
 def test_add_area_code():
     """Verify that the add_area_code function works correctly.
     Parameters: none
