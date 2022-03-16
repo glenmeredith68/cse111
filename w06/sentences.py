@@ -1,6 +1,4 @@
 import random
-from webbrowser import get
-from random_word import RandomWords
 import itertools
 
 
@@ -18,7 +16,7 @@ def main():
 def get_determiner(quantity):
     '''Function to generate articles in a sentence.'''
     if quantity == 1:
-        words = ['a', 'one', 'the', 'this', 'that', 'that there']
+        words = ['a', 'one', 'the', 'this', 'that', 'that-there']
     else:
         words = [
             'two', 'some', 'those', 'these', 'many', 'the', 'a few',

@@ -1,4 +1,3 @@
-import imp
 from sentences import get_determiner, get_noun, get_adverb, get_verb, get_preposition
 import pytest
 
@@ -134,7 +133,7 @@ def test_get_prepositional_phrases():
     for _ in range(4):
         phrase = get_prepositional_phrase(1)
         words = phrase.split()
-        assert words[1] in ['a', 'one', 'the', 'this', 'that', 'that there']
+        assert words[1] in ['a', 'one', 'the', 'this', 'that', 'that-there']
         assert words[0] in [
             'about',
             'above',
