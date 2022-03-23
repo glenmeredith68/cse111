@@ -9,19 +9,37 @@ supervisors know what we intend to do. Please answer each of the
 following questions to the best of your knowledge.)
 
 1. What is the title of your program?
+WORDLE
 
 2. What real world problem will your program address or help to solve?
+WORDLE will aim to entertain people by letting them guess 5 letter words for fun. 
 
 3. What will you learn from developing this program?
+I'm looking to learn how to make a crisp GUI. That seems kinda hard. 
 
 4. What Python modules will your program use? (Some examples are: csv,
 datetime, functools, matplotlib, math, pandas, pytest, random, requests,
 and tkinter.)
+This should use random as well as tkinter. 
 
 5. Will you separate your Python program into functions that each
 perform a single task?
+Yes! The ones that check against the correct letters and the ones that get input and the ones that oputput colors to the GUI. 
 
 6. Will you write test functions to test many of your program functions?
+Yes! I plan on at least testing the one that checks agains the known letters and the one that checks against the list of possible words.
+
+
+Things I did to work on this program this week:
+Extensive research on project ideas including:
+    Youtube video on machine learning
+    Brainstorming for Bro. Birch's ideas page
+    Reasearch pandas documentation
+    tkinter documentation
+    5 letter words list
+
+Didn't really start programming the program since I couldn't decide on an idea. 
+
 
 (Remember that it's hard to test functions that get user input and print
 output. It's easy to test functions that don't get user input and don't
