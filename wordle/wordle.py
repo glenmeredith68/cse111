@@ -1,4 +1,5 @@
 # WORDLE
+from ast import Not
 import random
 import tkinter
 
@@ -8,11 +9,12 @@ def main():
     print(len(word_list))
     answers_list = make_answers_list()
     print(len(answers_list))
-    answer, answers_list = pick_answer(answers_list)
-    print(answer, len(answers_list))
+    
 
     keep_playing = 0
     while keep_playing != 'no':
+        answer, answers_list = pick_answer(answers_list)
+        print(answer, len(answers_list))
         yellow_letters = []
         green_letters = []
         incorrect_letters = []
@@ -24,6 +26,9 @@ def main():
         guesses = []
         for i in range(6):
             guess = take_turn(incorrect_letters, remaining_letters)
+            # while guess.lower() not in word_list:
+            #     guess = take_turn(incorrect_letters, remaining_letters)
+            #     guess_in_list = guess_in_word_list(guess, word_list)
             checked_guess, incorrect_letters, remaining_letters, green_letters, yellow_letters = check_guess(
                 guess, answer, incorrect_letters, remaining_letters,
                 green_letters, yellow_letters)
@@ -34,12 +39,15 @@ def main():
                 print(f'Guess {i + 1}: {guesses[i]}')
                 i += 1
             turn_num += 1
-            if checked_guess == answer:
+            if checked_guess.lower() == answer:
                 keep_playing = you_win()
-
+                break
+            if i == 6:
+                print(f'The word was {answer}. ')
+                keep_playing = input('Looks like you used all 6 turns and lost. Want to play again? yes/no ')
             
 
-        keep_playing = input('Looks like you used all 6 turns and lost. Want to play again? yes/no ')
+        
 
 #  GAME MECHANICS
 
@@ -1420,6 +1428,14 @@ def take_turn(incorrect_letters, remaining_letters):
         guess = input('What is your 5 letter guess? ')
     return guess
 
+def guess_in_word_list(guess, word_list):
+    if guess.lower() in word_list:
+        guess_in_word_list = True
+    else:
+        guess_in_word_list = False
+        print('Guess not in word list. Try again. ')
+
+    return guess_in_word_list
 
 def check_guess(guess, answer, incorrect_letters, remaining_letters,
                 green_letters, yellow_letters):
