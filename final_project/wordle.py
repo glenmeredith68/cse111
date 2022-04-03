@@ -46,7 +46,7 @@ def main():
                 print(f'The word was {answer}. ')
                 keep_playing = input('Looks like you used all 6 turns and lost. Want to play again? yes/no ')
             
-
+    print('Thanks for playing! ')
         
 
 #  GAME MECHANICS
@@ -1428,12 +1428,12 @@ def take_turn(incorrect_letters, remaining_letters):
         guess = input('What is your 5 letter guess? ')
     return guess
 
-def guess_in_word_list(guess, word_list):
-    if guess.lower() in word_list:
-        guess_in_word_list = True
-    else:
-        guess_in_word_list = False
-        print('Guess not in word list. Try again. ')
+# def guess_in_word_list(guess, word_list):
+#     if guess.lower() in word_list:
+#         guess_in_word_list = True
+#     else:
+#         guess_in_word_list = False
+#         print('Guess not in word list. Try again. ')
 
     return guess_in_word_list
 
